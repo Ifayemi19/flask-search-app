@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de la recherche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .result {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            text-align: left;
+        }
+        .no-result {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Résultats pour : "{{ query }}"</h1>
+
+    {% if results %}
+        {% for result in results %}
+            <div class="result">
+                <p><strong>Document :</strong> {{ result.document }}</p>
+                <p><strong>Similarité :</strong> {{ result.similarity|round(2) }}</p>
+                <p><strong>Index du document :</strong> {{ result.ID }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-result">Aucun résultat trouvé.</p>
+    {% endif %}
+
+    <a href="/">Retour à la recherche</a>
+
+</body>
+</html>
